@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blanchedalmond ;
+}
+
+h1{
+
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    color: darkmagenta;
+    top: 30px;
+    left: 50px;
+    font-size: 1.5rem;
+}
+.chat-wrapper{
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    height: 90%;
+    width: 80%;
+}
+
+#messages_list{
+
+    width: 70%;
+    height: 90%;
+}
+
+.actions-wrapper{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    bottom: 15px;
+    height: 90px;
+    width: 90%;
+    padding: 10px;
+}
+
+#chat_mess{
+
+    border-radius: 60px;
+    border: none;
+    text-align: center;
+    font-size: 1.5rem;
+    width: 80%;
+}
+
+#send_btn{
+   width: 130px;
+   border: none;
+   border-radius: 60px;
+   font-size: 1.7rem;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+#messages_list{
+}
+
+.youre-message{
+    position: relative;
+    left: 85%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(52, 115, 170);
+    padding-left: 50px;
+    margin-bottom: 10px;
+    height: 90px;
+    width: 200px ;
+    border-radius: 60px;
+    text-align: left;
+    font-size: 2rem;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}

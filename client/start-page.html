@@ -1,0 +1,40 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets/login-page.css" />
+  </head>
+  <body>
+    <div class="img-container">
+      <img
+        src="https://i.pinimg.com/originals/67/3c/e9/673ce98f0f321d636148fa80daa3ebf8.gif"
+        alt="peoples"
+      />
+    </div>
+
+    <div class="main">
+      <h1>Hey Welcome Back</h1>
+
+      <fieldset id="login-fieldset">
+        <legend>No login for now</legend>
+        <input type="text" placeholder="Enter username" id="username-box" />
+        <button id="register_btn">Start</button>
+      </fieldset>
+    </div>
+
+    <script>
+
+      const register_btn = document.getElementById("register_btn");
+      const username_input = document.getElementById("username-box");
+
+      register_btn.addEventListener("click", () => {
+        // you must get the username after the click not before a click event
+        const username = username_input.value;
+
+        localStorage.setItem('user_name',username);
+        console.log(username);
+      });
+    </script>
+  </body>
+</html>

@@ -35,16 +35,25 @@ class User {
   }
 }
 
+// constructing a class using stored username in localStorage
+const user_name = localStorage.getItem('user_name');
+const user = new User(user_name);
+
+console.log(user.name);
+
 ws.onmessage = (event) => {
+  // this code resolves the Object blob 
   const blob = event.data;
   const reader = new FileReader();
 
   reader.onload = function (e) {
     const text = e.target.result;
 
-    const li = document.createElement("li");
-    li.textContent = text;
-    mess_list.appendChild(li);
+    const p = document.createElement("p");
+    p.textContent = text;
+    p.classList.add('youre-message');
+    mess_list.appendChild(p);
+
   };
 
   reader.readAsText(blob);
