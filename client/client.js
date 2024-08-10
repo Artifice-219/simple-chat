@@ -6,54 +6,92 @@ const send_btn = document.getElementById("send_btn");
 class User {
   #_username;
   #message;
+  // picLInk will hopefully hold the link for an avatar image
+  // then that link will be used as an src attribute
+  #_picLink;
 
   constructor(name) {
     this.#_username = name;
   }
 
-  set name(new_name){
+  set pic(link) {
+    if (link === "") {
+      throw new Error("Cannot assingn an empty link");
+    }
+
+    this.#_picLink = link;
+  }
+
+  set name(new_name) {
     new_name = new_name.trim();
 
-    if(new_name === ''){
-        throw new Error('Name cannot be empty');
+    if (new_name === "") {
+      throw new Error("Name cannot be empty");
+    }
+
     this.#_username = new_name;
   }
-}
 
-  set message(new_message){
+  set message(new_message) {
     new_message = new_message.trim();
 
     this.#message = new_message;
   }
 
-  get name(){
+  // getter starts here
+  get picLink() {
+    return this.#_picLink;
+  }
+
+  get name() {
     return this.#_username;
   }
 
-  get message(){
+  get message() {
     return this.#message;
   }
 }
 
 // constructing a class using stored username in localStorage
-const user_name = localStorage.getItem('user_name');
+const user_name = localStorage.getItem("user_name");
 const user = new User(user_name);
 
 console.log(user.name);
 
 ws.onmessage = (event) => {
-  // this code resolves the Object blob 
+  // this code resolves the Object blob
   const blob = event.data;
   const reader = new FileReader();
 
   reader.onload = function (e) {
+    // a div to contain the text and the user avatar
+    const user_prompt = document.createElement("div");
+    // a div to wrap the image for easier styling
+    const user_image = document.createElement("div");
+    // a div that will display the user name
+    const username_div = document.createElement("p");
     const text = e.target.result;
 
     const p = document.createElement("p");
     p.textContent = text;
-    p.classList.add('youre-message');
-    mess_list.appendChild(p);
+    p.classList.add("youre-message");
 
+    const avatar = document.createElement("img");
+    avatar.src =
+      "https://i.pinimg.com/564x/e4/52/ad/e452ad1529b0407c7a8663b1516bf146.jpg";
+    // append the image to the image container first
+    user_image.appendChild(avatar);
+    user_image.classList.add("avatar");
+
+    username_div.textContent = user.name;
+    username_div.classList.add("user_name");
+
+    // append them to the div
+    user_prompt.appendChild(p);
+    user_prompt.appendChild(user_image);
+    user_prompt.appendChild(username_div);
+
+    mess_list.appendChild(user_prompt);
   };
 
   reader.readAsText(blob);

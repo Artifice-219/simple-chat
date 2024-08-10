@@ -85,3 +85,33 @@ h1{
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.avatar{  
+/* this classs actually target a div image container */
+/* might change this name later on */
+    position: relative;
+    left: 73%;
+    top: -108px;
+    height: 100px;
+    width: 100px;
+    border-radius: 60%;
+    object-fit: cover;
+    overflow: hidden;
+    
+}
+
+.avatar img{
+
+    height: 100%;
+    width: 100%;
+}
+
+.user_name{
+
+    position: relative;
+    top: -90px;
+    left: 73%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    width: fit-content;
+}
