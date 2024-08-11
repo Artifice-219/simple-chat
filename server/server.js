@@ -7,12 +7,12 @@ const server = http.createServer((req, res) => {
 
     if(req.method === 'GET' && req.url === '/'){
 
-        fs.readFile(path.join(__dirname, 'index.html'), (err, data) => {
+        fs.readFile(path.join(__dirname, 'client/start-page.html'), (err, data) => {
 
             if(err){
 
                 res.writeHead(500);
-                return res.end('Error loading index.html');
+                return res.end('Error loading start-page.html');
             }
 
             res.writeHead(200, {'Content-Type' : 'text/html'});

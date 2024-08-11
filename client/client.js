@@ -40,6 +40,7 @@ class User {
 
   // getter starts here
   get picLink() {
+    console.log(`User pic link = ${this.#_picLink}`);
     return this.#_picLink;
   }
 
@@ -52,11 +53,45 @@ class User {
   }
 }
 
+class Avatar_provider{
+
+  #avatar_weblink = [];
+
+  constructor(link){
+    if(link === ''){
+      throw new Error('Cannot use an empty link for a user avatar');
+    }
+
+    this.#avatar_weblink.push(link);
+  }
+
+  // setter methods
+  set new_link(link){
+    if(link === ''){
+      throw new Error('Cannot use an empty link for a user avatar');
+    }
+
+    this.#avatar_weblink.push(link);
+  }
+
+  // getter methods
+  get random_link(){
+    const index = Math.floor(Math.random() * this.#avatar_weblink.length);
+
+    return this.#avatar_weblink[index];
+
+  }
+}
+
+const link = new Avatar_provider('https://i.pinimg.com/564x/85/cc/6f/85cc6f5b64aed0e13ebe2e090a2d0f9c.jpg');
+link.new_link = 'https://i.pinimg.com/564x/85/cc/6f/85cc6f5b64aed0e13ebe2e090a2d0f9c.jpg';
+link.new_link = 'https://i.pinimg.com/736x/d6/3e/7c/d63e7caf134bb42002536a77699773f8.jpg';
 // constructing a class using stored username in localStorage
 const user_name = localStorage.getItem("user_name");
 const user = new User(user_name);
+user.pic = link.random_link;
 
-console.log(user.name);
+console.log(user.picLink);
 
 ws.onmessage = (event) => {
   // this code resolves the Object blob
@@ -77,8 +112,7 @@ ws.onmessage = (event) => {
     p.classList.add("youre-message");
 
     const avatar = document.createElement("img");
-    avatar.src =
-      "https://i.pinimg.com/564x/e4/52/ad/e452ad1529b0407c7a8663b1516bf146.jpg";
+    avatar.src = user.picLink;
     // append the image to the image container first
     user_image.appendChild(avatar);
     user_image.classList.add("avatar");
@@ -108,3 +142,5 @@ chat_mess.addEventListener("keypress", (event) => {
     send_btn.click();
   }
 });
+
+
