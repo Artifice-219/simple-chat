@@ -124,8 +124,12 @@ ws.onmessage = (event) => {
     user_prompt.appendChild(p);
     user_prompt.appendChild(user_image);
     user_prompt.appendChild(username_div);
-
     mess_list.appendChild(user_prompt);
+
+    // auto scroll the container
+    let height = mess_list.scrollHeight;
+     mess_list.scrollTop = height;
+     console.log(`Scrolling to ${mess_list.scrollHeight}`);
   };
 
   reader.readAsText(blob);
